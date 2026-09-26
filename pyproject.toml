@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fraudguard"
+version = "1.0.0"
+description = "FraudGuard - Explainable Transaction Fraud Detection System (PaySim, XGBoost, FastAPI, Streamlit, SHAP)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "scikit-learn>=1.3",
+    "xgboost>=2.0",
+    "shap>=0.44",
+    "joblib>=1.3",
+    "sqlalchemy>=2.0",
+    "pydantic>=2.0",
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.27",
+    "python-multipart>=0.0.9",
+    "streamlit>=1.32",
+    "plotly>=5.18",
+    "requests>=2.31",
+    "matplotlib>=3.7",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=4.1",
+    "httpx>=0.27",
+    "ruff>=0.4",
+    "jupyter>=1.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+markers = [
+    "slow: tests that train models or touch the full dataset",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "api", "dashboard", "tests"]
+extend-exclude = ["notebooks"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"api/*.py" = ["B008"]  # FastAPI's File()/Query() defaults are the framework idiom
+"tests/conftest.py" = ["E402"]  # env vars must be set before importing the package

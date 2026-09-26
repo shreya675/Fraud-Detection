@@ -1,0 +1,43 @@
+# Data (PaySim is ~470 MB - never commit it)
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Trained artifacts: the deployed XGBoost model (~750 KB), its preprocessor
+# and metadata are committed so the API/dashboard work straight after clone.
+# Anything else in models/ (e.g. non-deployed candidates) is ignored.
+models/*
+!models/.gitkeep
+!models/xgboost_model.ubj
+!models/preprocessor.joblib
+!models/model_metadata.json
+!models/feature_names.json
+!models/threshold.json
+
+# SQLite prediction history
+*.db
+*.sqlite
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

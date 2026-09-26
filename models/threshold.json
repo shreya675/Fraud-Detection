@@ -1,0 +1,8 @@
+{
+  "threshold": 0.98,
+  "rule": "max F1 on validation (plateau 0.97-0.99, midpoint chosen)",
+  "validation_precision": 1.0,
+  "validation_recall": 1.0,
+  "validation_f1": 1.0,
+  "default_threshold": 0.5
+}

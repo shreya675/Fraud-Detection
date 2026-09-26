@@ -1,0 +1,35 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    image: fraudguard-api:latest
+    container_name: fraudguard-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - fraudguard-db:/app/data/db      # prediction history persists across restarts
+    environment:
+      FRAUDGUARD_DATABASE_URL: sqlite:////app/data/db/fraudguard.db
+    restart: unless-stopped
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: dashboard/Dockerfile
+    image: fraudguard-dashboard:latest
+    container_name: fraudguard-dashboard
+    ports:
+      - "8501:8501"
+    environment:
+      FRAUDGUARD_API_URL: http://api:8000
+      FRAUDGUARD_DATABASE_URL: sqlite:////app/data/db/fraudguard.db
+    volumes:
+      - fraudguard-db:/app/data/db
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  fraudguard-db:

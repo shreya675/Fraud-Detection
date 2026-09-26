@@ -1,0 +1,75 @@
+{
+  "all_features": {
+    "n_features": 26,
+    "best_iteration": 48,
+    "threshold": 0.46,
+    "validation": {
+      "precision": 0.9974093264248705,
+      "recall": 1.0,
+      "f1": 0.9987029831387808,
+      "pr_auc": 0.9999915690281503,
+      "roc_auc": 0.9999999949760688,
+      "fp": 2,
+      "fn": 0
+    },
+    "test": {
+      "precision": 1.0,
+      "recall": 0.9952941176470588,
+      "f1": 0.9976415094339623,
+      "pr_auc": 0.9981463278281625,
+      "roc_auc": 0.9999793230013885,
+      "fp": 0,
+      "fn": 20
+    },
+    "seconds": 87.1
+  },
+  "without_reconciliation_features": {
+    "n_features": 22,
+    "best_iteration": 123,
+    "threshold": 0.73,
+    "validation": {
+      "precision": 0.9934895833333334,
+      "recall": 0.990909090909091,
+      "f1": 0.9921976592977894,
+      "pr_auc": 0.999696706403701,
+      "roc_auc": 0.9999998221528339,
+      "fp": 5,
+      "fn": 7
+    },
+    "test": {
+      "precision": 0.999523241954708,
+      "recall": 0.9865882352941177,
+      "f1": 0.9930136175251629,
+      "pr_auc": 0.9998418466277811,
+      "roc_auc": 0.9999990187302464,
+      "fp": 2,
+      "fn": 57
+    },
+    "seconds": 140.3
+  },
+  "raw_columns_only": {
+    "n_features": 12,
+    "best_iteration": 457,
+    "threshold": 0.36,
+    "validation": {
+      "precision": 0.967016491754123,
+      "recall": 0.8376623376623377,
+      "f1": 0.8977035490605428,
+      "pr_auc": 0.943219012865173,
+      "roc_auc": 0.999922008491348,
+      "fp": 22,
+      "fn": 125
+    },
+    "test": {
+      "precision": 0.9815016322089227,
+      "recall": 0.8489411764705882,
+      "f1": 0.9104213979308603,
+      "pr_auc": 0.9734373601093826,
+      "roc_auc": 0.999872029000208,
+      "fp": 68,
+      "fn": 642
+    },
+    "seconds": 357.4
+  },
+  "_note": "Same XGBoost configuration (scale_pos_weight=1, early stopping on validation PR-AUC); threshold = validation F1 optimum. Dropped in the second run: error_balance_orig, error_balance_dest, amount_equals_orig_balance, orig_emptied"
+}

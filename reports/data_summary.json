@@ -1,0 +1,63 @@
+{
+  "source_file": "/content/project/fraudguard/data/raw/PS_20174392719_1491204439457_log.csv",
+  "cleaning": {
+    "rows_in": 6362620,
+    "duplicates_removed": 0,
+    "rows_missing_target_removed": 0,
+    "rows_invalid_type_removed": 0,
+    "rows_negative_amount_removed": 0,
+    "numeric_nans_filled": 0,
+    "rows_out": 6362620
+  },
+  "dataset": {
+    "rows": 6362620,
+    "fraud": 8213,
+    "fraud_rate_pct": 0.1291,
+    "steps": [
+      1,
+      743
+    ],
+    "fraud_by_type": {
+      "CASH_IN": 0,
+      "CASH_OUT": 4116,
+      "DEBIT": 0,
+      "PAYMENT": 0,
+      "TRANSFER": 4097
+    },
+    "rows_by_type": {
+      "CASH_OUT": 2237500,
+      "PAYMENT": 2151495,
+      "CASH_IN": 1399284,
+      "TRANSFER": 532909,
+      "DEBIT": 41432
+    },
+    "isFlaggedFraud_total": 16
+  },
+  "splits": [
+    {
+      "split": "train",
+      "rows": 3820599,
+      "fraud": 3193,
+      "fraud_rate_pct": 0.0836,
+      "step_min": 1,
+      "step_max": 281
+    },
+    {
+      "split": "validation",
+      "rows": 1293285,
+      "fraud": 770,
+      "fraud_rate_pct": 0.0595,
+      "step_min": 282,
+      "step_max": 355
+    },
+    {
+      "split": "test",
+      "rows": 1248736,
+      "fraud": 4250,
+      "fraud_rate_pct": 0.3403,
+      "step_min": 356,
+      "step_max": 743
+    }
+  ],
+  "split_strategy": "time-aware on 'step': first 60% of rows by step -> train, next 20% -> validation, remaining -> untouched test"
+}
