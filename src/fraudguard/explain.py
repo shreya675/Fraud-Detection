@@ -2,10 +2,10 @@
 
 Two SHAP back-ends are supported:
 
-* **XGBoost** - the Booster's built-in TreeSHAP (``pred_contribs=True``), the
+* XGBoost - the Booster's built-in TreeSHAP (``pred_contribs=True``), the
   same exact algorithm as ``shap.TreeExplainer``; values are in log-odds and
   sum to the model output. No extra dependency, no JIT warm-up.
-* **scikit-learn tree ensembles** (Random Forest) - ``shap.TreeExplainer``
+* scikit-learn tree ensembles (Random Forest) - ``shap.TreeExplainer``
   from the ``shap`` package; values are in probability space.
 
 ``make_explainer`` picks the right one for the deployed model.

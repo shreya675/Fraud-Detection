@@ -5,13 +5,12 @@
 Steps
   1. Load the time-aware splits (``python -m fraudguard.data`` must have run).
   2. Fit the preprocessing pipeline on TRAIN only.
-  3. Train Logistic Regression, Random Forest, XGBoost with imbalance handling.
+  3. Grid-search and refit Logistic Regression, Random Forest and XGBoost.
   4. Compare on VALIDATION (PR-AUC is the primary metric).
   5. Choose the decision threshold for the best model on VALIDATION only.
   6. Evaluate once on the untouched TEST set and write reports.
   7. Save preprocessor, model, threshold, feature names and metadata.
 
-Every number written to ``reports/`` and ``models/`` comes out of this run.
 """
 
 from __future__ import annotations
@@ -320,7 +319,7 @@ def train_all(
 
 PR_AUC_TIE_TOLERANCE = 5e-4
 F1_TIE_TOLERANCE = 5e-4
-# Models with a built-in, dependency-free SHAP implementation (requirement: per-transaction explanations)
+# Models with a built-in SHAP implementation (no extra explainer dependency in the service)
 NATIVE_SHAP_MODELS = {"xgboost"}
 
 
@@ -471,8 +470,7 @@ def _run(
     tied = [n for n in models if val_at_default[n]["pr_auc"] >= best_pr_auc - PR_AUC_TIE_TOLERANCE]
     best_f1 = max(val_at_best[n]["f1"] for n in tied)
     tied = [n for n in tied if val_at_best[n]["f1"] >= best_f1 - F1_TIE_TOLERANCE]
-    # Per-transaction SHAP explanations are a system requirement; prefer a
-    # model that provides them natively, then the lowest latency.
+    # Prefer a model that explains its scores natively, then the lowest latency.
     best_model_name = min(tied, key=lambda n: (n not in NATIVE_SHAP_MODELS, latency[n]))
     selection_rule = (
         f"highest validation PR-AUC (tie tolerance {PR_AUC_TIE_TOLERANCE}); ties -> highest F1 at tuned threshold "

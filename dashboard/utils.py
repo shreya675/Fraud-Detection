@@ -20,7 +20,7 @@ from fraudguard.config import INPUT_COLUMNS, MODELS_DIR, REPORTS_DIR
 
 API_URL = os.environ.get("FRAUDGUARD_API_URL", "http://localhost:8000").rstrip("/")
 
-# Validated default palette (dataviz reference)
+# Chart palette (same as evaluate.py)
 PALETTE = {
     "blue": "#2a78d6",
     "orange": "#eb6834",

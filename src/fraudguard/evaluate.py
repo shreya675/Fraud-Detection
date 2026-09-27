@@ -18,7 +18,7 @@ from sklearn.metrics import (
     roc_curve,
 )
 
-# Palette (validated default from the dataviz reference palette)
+# Chart palette
 COLORS = {
     "logistic_regression": "#2a78d6",  # blue
     "random_forest": "#eb6834",  # orange

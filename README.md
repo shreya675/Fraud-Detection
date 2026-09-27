@@ -12,7 +12,7 @@ explains every score with **SHAP**, and serves the result through a
 history — tested with **pytest**, containerised with **Docker Compose**, and
 checked on every push by **GitHub Actions**.
 
-> **Read the results with the dataset in mind.** PaySim is a *simulator*, and its
+> **About the numbers.** PaySim is a *simulator*, and its
 > fraud follows a mechanical pattern (the origin account is drained and the
 > destination balance is not updated). Balance-reconciliation features expose
 > that pattern almost perfectly, so every reasonable model scores near the
@@ -50,7 +50,7 @@ log-loss). Numbers below are from the **untouched test split** — the last 20 %
 of the timeline (1,248,736 transactions, 4,250 fraud), never used for
 training, model selection or threshold tuning.
 
-| Metric | Value | In plain terms |
+| Metric | Value | Meaning |
 |---|---|---|
 | Precision | **1.0000** | 0 false alarms in 1,248,736 transactions |
 | Recall | **0.9962** | 4,234 of 4,250 frauds caught, 16 missed |

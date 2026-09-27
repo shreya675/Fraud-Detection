@@ -2,8 +2,7 @@
 
 Mimics the real dataset's schema and its dominant fraud pattern (the origin
 account is emptied by a TRANSFER / CASH_OUT whose destination balances are
-not updated), so a quick model trained on it behaves sensibly.  It is *not*
-used for any reported metric.
+not updated), so a quick model trained on it behaves sensibly.
 """
 
 from __future__ import annotations

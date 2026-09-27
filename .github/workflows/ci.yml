@@ -48,9 +48,9 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      # The images COPY models/ and reports/. Trained binaries are git-ignored,
-      # so CI trains a small synthetic model to make sure the images build and
-      # the API container starts and answers /health.
+      # Build the images from a freshly trained synthetic model so the check
+      # does not depend on the committed artifacts, then make sure the API
+      # container starts and answers /health and /predict.
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
