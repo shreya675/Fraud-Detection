@@ -1,6 +1,6 @@
 # FraudGuard — Explainable Transaction Fraud Detection
 
-[![CI](https://github.com/YOUR_GITHUB_USERNAME/fraudguard/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_GITHUB_USERNAME/fraudguard/actions/workflows/ci.yml)
+[![CI](https://github.com/shreya675/fraudguard/actions/workflows/ci.yml/badge.svg)](https://github.com/shreya675/fraudguard/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
@@ -273,7 +273,7 @@ Example — a TRANSFER of 181 that empties the origin account:
 ## Setup
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/fraudguard.git
+git clone https://github.com/shreya675/fraudguard.git
 cd fraudguard
 python -m venv .venv && source .venv/bin/activate      # Windows: .\.venv\Scripts\Activate.ps1
 pip install -r requirements-dev.txt
@@ -287,11 +287,8 @@ API and dashboard work immediately. To retrain:
    token, or manually) into `data/raw/PS_20174392719_1491204439457_log.csv`.
 2. `python -m fraudguard.data` — clean and split (~1 min, needs ~4 GB RAM).
 3. `python -m fraudguard.train` — search, compare, select, evaluate
-   (~30 min on 4 cores; ~65 min on Colab's free CPU tier).
-4. Optional: `python scripts/ablation.py`, `python scripts/build_eda_notebook.py`.
-
-`notebooks/02_colab_train.ipynb` runs steps 1 – 3 on Google Colab if your
-machine is short on memory.
+   (30–60 min on a 2–4 core CPU; needs ~4 GB RAM).
+4. Optional: `python scripts/ablation.py`.
 
 ---
 
@@ -409,8 +406,8 @@ fraudguard/
 ├── dashboard/            Streamlit app (app.py, utils.py, Dockerfile)
 ├── src/fraudguard/       library: config, data, features, evaluate, train, explain, predictor, db
 ├── tests/                pytest suite + synthetic data generator
-├── scripts/              download_data, ablation, notebook builders, screenshot capture
-├── notebooks/            01_eda.ipynb (executed), 02_colab_train.ipynb
+├── scripts/              download_data.py, ablation.py
+├── notebooks/            01_eda.ipynb (exploratory analysis, executed)
 ├── models/               trained artifacts (xgboost_model.ubj, preprocessor, threshold, metadata)
 ├── reports/              metrics JSON/CSV, figures, screenshots
 ├── data/samples/         525-row sample from the test split for batch demos

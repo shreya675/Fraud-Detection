@@ -8,7 +8,7 @@ from datetime import datetime, timezone
 
 import pandas as pd
 from sqlalchemy import Boolean, DateTime, Float, Integer, String, Text, create_engine, func, select
-from sqlalchemy.orm import DeclarativeBase, Mapped, Session, mapped_column, sessionmaker
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, sessionmaker
 
 from fraudguard.config import DATABASE_URL
 
@@ -158,6 +158,3 @@ class PredictionStore:
 def get_store(database_url: str = DATABASE_URL) -> PredictionStore:
     return PredictionStore(database_url)
 
-
-# Keep a Session symbol exported for type hints in the API layer
-__all__ = ["Base", "Prediction", "PredictionStore", "get_store", "Session"]

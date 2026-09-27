@@ -40,7 +40,7 @@ def _load_preprocessor(path: Path):
 
     The preprocessor has no learned state beyond the fixed transaction-type
     categories, so a rebuilt one is identical. This keeps artifacts usable
-    across scikit-learn versions (e.g. trained on Colab, served locally).
+    across scikit-learn versions (trained on one machine, served on another).
     """
     import warnings
 
@@ -48,7 +48,7 @@ def _load_preprocessor(path: Path):
         with warnings.catch_warnings():
             warnings.simplefilter("ignore")
             pre = joblib.load(path)
-        # smoke-test the unpickled object on one row
+        # make sure the unpickled object actually works
         pre.transform(
             pd.DataFrame(
                 [
